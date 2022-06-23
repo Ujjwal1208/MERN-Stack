@@ -1,0 +1,33 @@
+main {
+  min-height: 75vh;
+}
+
+.footer {
+  background-color: rgb(47, 47, 230);
+}
+
+.copy {
+  font-size: larger;
+  font-style: bold;
+  color: black;
+}
+
+h3 {
+  padding: 1rem 0;
+}
+
+.super {
+  text-align: center;
+}
+
+.card_home {
+  background-image: linear-gradient(rgb(230, 47, 47), rgb(47, 47, 230));
+}
+
+.hi {
+  text-align: center;
+}
+
+.back {
+  align-items: right;
+}
