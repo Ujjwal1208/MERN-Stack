@@ -16,6 +16,11 @@ h3 {
   padding: 1rem 0;
 }
 
+h2 {
+  font-size: 1.4rem;
+  padding: 0.1rem;
+}
+
 .super {
   text-align: center;
 }
@@ -30,4 +35,8 @@ h3 {
 
 .back {
   align-items: right;
+}
+
+.hover-msg {
+  text-align: center;
 }

@@ -1,7 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  Form,
+} from "react-bootstrap";
 import Rating from "../components/Rating";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -9,6 +18,8 @@ import { listMentorDetails } from "../actions/mentorActions";
 
 const MentorScreen = ({ match }) => {
   const { id } = useParams();
+
+  const [year, setYear] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -18,6 +29,12 @@ const MentorScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listMentorDetails(id));
   }, [dispatch, match]);
+
+  const navigate = useNavigate();
+
+  const addMentorHandler = () => {
+    navigate(`/cart/${id}?year=${year}`);
+  };
 
   return (
     <>
@@ -65,8 +82,30 @@ const MentorScreen = ({ match }) => {
                     </Row>
                   </ListGroup.Item>
 
+                  {mentor.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Year</Col>
+                        <Col>
+                          <Form.Control
+                            as="select"
+                            value={year}
+                            onChange={(e) => setYear(e.target.value)}
+                          >
+                            {[...Array(mentor.countInStock).keys()].map((x) => (
+                              <option key={x + 1} value={x + 1}>
+                                {x + 1}
+                              </option>
+                            ))}
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
+
                   <ListGroup.Item className="hi">
                     <Button
+                      onClick={addMentorHandler}
                       className="btn-block"
                       type="button"
                       disabled={mentor.countInStock === 0}

@@ -18,7 +18,9 @@ const Mentor = ({ mentor }) => {
         <Card.Text as="div">
           <Rating value={mentor.rating} text={`${mentor.numReviews} reviews`} />
         </Card.Text>
-        <Card.Text as="h3">${mentor.price}</Card.Text>
+        <Card.Text classNmae="card-price" as="h3">
+          ${mentor.price}
+        </Card.Text>
       </Card.Body>
     </Card>
   );
