@@ -11,6 +11,8 @@ import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
+import MentorListScreen from "./screens/MentorListScreen";
+import MentorEditScreen from "./screens/MentorEditScreen";
 
 const App = () => {
   return (
@@ -36,6 +38,36 @@ const App = () => {
             <Route
               path="/admin/user/:id/edit"
               element={<UserEditScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/admin/mentorlist"
+              element={<MentorListScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/admin/mentor/:id/edit"
+              element={<MentorEditScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/search/:keyword"
+              element={<HomeScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/page/:pageNumber"
+              element={<HomeScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/search/:keyword/page/:pageNumber"
+              element={<HomeScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/admin/mentorlist/:pageNumber"
+              element={<MentorListScreen />}
               exact
             ></Route>
           </Routes>

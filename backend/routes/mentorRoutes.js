@@ -1,20 +1,27 @@
 import express from "express";
 import mongoose from "mongoose";
 const router = express.Router();
-import { getMentors, getMentorById } from "../controllers/mentorControllers.js";
+import {
+  getMentors,
+  getMentorById,
+  deleteMentor,
+  updateMentor,
+  addMentor,
+  addMentorReview,
+  getTopMentors,
+} from "../controllers/mentorControllers.js";
+import { protect, admin } from "../middleware/authMiddleware.js";
 
-router.route("/").get(getMentors);
+router.route("/").get(getMentors).post(protect, admin, addMentor);
 
-router.route("/:id").get(getMentorById);
-//   const mentor = await Mentor.findById(req.params.id);
+router.route("/:id/reviews").post(protect, addMentorReview);
 
-//   if (mentor) {
-//     res.json(mentor);
-//   } else {
-//     res.status(404).json({ message: "Mentor not found " });
-//   }
+router.get("/top", getTopMentors);
 
-//   res.json(mentor);
-// })
+router
+  .route("/:id")
+  .get(getMentorById)
+  .delete(protect, admin, deleteMentor)
+  .put(protect, admin, updateMentor);
 
 export default router;
